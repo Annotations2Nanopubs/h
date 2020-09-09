@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import newrelic.agent
 from pyramid import httpexceptions
 from webob.multidict import MultiDict
