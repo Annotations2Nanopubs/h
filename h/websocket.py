@@ -158,6 +158,7 @@ def create_app(global_config, **settings):
 
     config.include("pyramid_services")
 
+    config.include("h.accounts")
     config.include("h.auth")
     # Override the default authentication policy.
     config.set_authentication_policy("h.auth.WEBSOCKET_POLICY")
