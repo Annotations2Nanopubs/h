@@ -22,6 +22,10 @@ def createannotations(ctx):
             minute=random.randint(0, 59),
             second=random.randint(0, 59),
         )
-        db.add(factories.Annotation.build(created=created, updated=updated))
+        db.add(factories.Annotation.build(
+            created=created,
+            updated=updated,
+            shared=True,
+        ))
 
     tm.commit()
