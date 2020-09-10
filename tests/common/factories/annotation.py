@@ -115,21 +115,6 @@ class Annotation(ModelFactory):
         )
 
     @factory.post_generation
-    def make_id(self, create, extracted, **kwargs):
-        """Add a randomly ID if the annotation doesn't have one yet."""
-        # If using the create strategy don't generate an id.
-        # models.Annotation.id's server_default function will generate one
-        # when the annotation is saved to the DB.
-        if create:
-            return
-
-        # Don't generate an id if the user passed in one of their own.
-        if getattr(self, "id", None):
-            return
-
-        self.id = uuid.uuid4().hex
-
-    @factory.post_generation
     def timestamps(self, create, extracted, **kwargs):
         # If using the create strategy let sqlalchemy set the created and
         # updated times when saving to the DB.
