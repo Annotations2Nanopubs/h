@@ -42,14 +42,14 @@ def process_messages(settings, routing_key, work_queue, raise_error=True):
             log.warning(
                 "Streamer work queue full! Unable to queue message from "
                 "h.realtime having waited 0.1s: giving up."
-            )
+            )  # pragma: no-cover
 
     conn = realtime.get_connection(settings)
     consumer = Consumer(connection=conn, routing_key=routing_key, handler=_handler,)
     consumer.run()
 
     if raise_error:
-        raise RuntimeError("Realtime consumer quit unexpectedly!")
+        raise RuntimeError("Realtime consumer quit unexpectedly!")  # pragma: no-cover
 
 
 def handle_message(message, settings, session, topic_handlers):
@@ -68,7 +68,7 @@ def handle_message(message, settings, session, topic_handlers):
     except KeyError:
         raise RuntimeError(
             "Don't know how to handle message from topic: " "{}".format(message.topic)
-        )
+        )  # pragma: no-cover
 
     # N.B. We iterate over a non-weak list of instances because there's nothing
     # to stop connections being added or dropped during iteration, and if that
